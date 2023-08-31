@@ -23,7 +23,7 @@ Mitigations of all High and Medium issues will be considered in-scope and listed
 - [M-02: Incorrect parameters passed to UniV3 may cause funds stuck in the vault](https://github.com/code-423n4/2023-08-goodentry-findings/issues/397)
 - [M-03: Incorrect boundaries check in GeVault's "getActiveTickIndex" can temporarily freeze assets due to Index out of bounds error](https://github.com/code-423n4/2023-08-goodentry-findings/issues/379)
 - [M-04: First depositor can break minting of liquidity shares in GeVault](https://github.com/code-423n4/2023-08-goodentry-findings/issues/367)
-- [M-05: addDust does not achieve the goal correctly and may overflow revert]([link to Github issue](https://github.com/code-423n4/2023-08-goodentry-findings/issues/358)
+- [M-05: addDust does not achieve the goal correctly and may overflow revert](https://github.com/code-423n4/2023-08-goodentry-findings/issues/358)
 - [M-06: User can steal refunded underlying tokens from initRange operation inside RangeManager](https://github.com/code-423n4/2023-08-goodentry-findings/issues/254)
 - [M-07: Incorrect calculations in deposit() function in TokenisableRange.sol can make the users suffer from immediate loss](https://github.com/code-423n4/2023-08-goodentry-findings/issues/202)
 - [M-08: Return value of low level call not checked.](https://github.com/code-423n4/2023-08-goodentry-findings/issues/83)
