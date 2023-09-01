@@ -1,7 +1,7 @@
 # Good Entry - Mitigation Review details
 - Total Prize Pool: $26,000 USDC 
 - [Warden guidelines for C4 mitigation reviews](https://code4rena.notion.site/Guidelines-for-C4-mitigation-reviews-ed10fc5cfbf640bd8dcec66f38b343c4)
-- Submit findings [using the C4 form](https://code4rena.com/contests/2023-09-goodentry-mitigation-review/submit)
+- Submit findings [using the C4 form](https://code4rena.com/contests/2023-09-good-entry-mitigation-review/submit)
 - Starts September 06, 2023 20:00 UTC 
 - Ends September 11, 2023 20:00 UTC 
 
