@@ -32,22 +32,39 @@ Mitigations of all High and Medium issues will be considered in-scope and listed
 
 ## Overview of changes
 
-Please provide context about the mitigations that were applied if applicable and identify any areas of specific concern.
+Simple errors like the sqrt version were corrected.
+The main change is to the fee system in TokenizsableRange. Because repaying a TR debt exactly is tricky and introduces several problems (addDust, fee clawing on deposit...), the system has been changed.
+TokenisableRange fees aren't compounded anymore directly in TR, but are sent to the corresponding GeVault. The Gevault address is queried from a list (new addition to RoeRouter) (or to treasury is no such vault exists).
+We added a depositExactly function to TR, which takes an additional expectedAmount parameter. When depositing in TR, if because of rounding the difference between the expected liquidity and the actually minted liquidity is dust (as defined by: value is 0, or lower than 1 unit of the underlying token), then mint the expected liquidity.
+
+Another set of changes is for the GeVaults: the activeIndex system has been changed so that the index point to the first tick above current price. If 2 ticks below or above exist, it tries to deposit assets in them (and gracefully ignores errors so as to prevent revert, eg when price is inside a tick).
+Instead of depositing half of the assets into each of the 2 ticks above and below, this has been parameterized, allowing to change asset distribution in case of high volatility.
+
 
 ## Mitigations to be reviewed
 
 ### Branch
-[ ⭐️ SPONSORS ADD A LINK TO THE BRANCH IN YOUR REPO CONTAINING ALL PRS ]
+
+All PR can be seen [here](https://github.com/GoodEntry-io/ge/pulls?q=), and have been linked in each issue's comments.
 
 ### Individual PRs
-[ ⭐️ SPONSORS ADD ALL RELEVANT PRs TO THE TABLE BELOW:]
 
 Wherever possible, mitigations should be provided in separate pull requests, one per issue. If that is not possible (e.g. because several audit findings stem from the same core problem), then please link the PR to all relevant issues in your findings repo. 
 
 | URL | Mitigation of | Purpose | 
 | ----------- | ------------- | ----------- |
-| https://github.com/your-repo/sample-contracts/pull/XXX | H-01 | This mitigation does XYZ | 
+| https://github.com/GoodEntry-io/ge/pull/4 | H-01, H-04 | Remove complex fee clawing strategy | 
+| https://github.com/GoodEntry-io/ge/commit/a8ba6492b19154c72596086f5531f6821b4a46a2 | H-02 | Take unused funds into account for TVL | 
+| https://github.com/GoodEntry-io/ge/pull/3 | H-03 | Scale down sqrtPriceX96 to prevent overflow | 
+| https://github.com/GoodEntry-io/ge/pull/2 | H-05 | Send back unused funds to user | 
+| https://github.com/GoodEntry-io/ge/commit/8b0feaec0005937c8e6c7ef9bf039a0c2498529a | H-06 | Use correct Uniswap for sol ^0.8 libs | 
+| https://github.com/GoodEntry-io/ge/pull/10 | M-01 | Added explicit require msg.sender == to | 
+| https://github.com/GoodEntry-io/ge/commit/bbbac57c110223f45851494971a34f57c55922c7 | M-02 | Prevent collect from reverting by adding a check that it doesnt try to collect 0 | 
+| https://github.com/GoodEntry-io/ge/pull/11 | M-03 | Reworked activeTickIndex as per desc above | 
+|  | M-04 | This | 
+| https://github.com/GoodEntry-io/ge/pull/8 | M-05, M-07 | Removed addDust mechanism, replaced by depositExactly in TR | 
+| https://github.com/GoodEntry-io/ge/pull/3 | M-06 | Added return value check | 
 
 ## Out of Scope
 
-Please list any High and Medium issues that were judged as valid but you have chosen not to fix.
+M-04 is not really a problem as the team deploys the contract and can deposit a very small initial amount. The attack would then steal a negligible amount (likely less than the gas cost)
