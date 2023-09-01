@@ -61,7 +61,6 @@ Wherever possible, mitigations should be provided in separate pull requests, one
 | https://github.com/GoodEntry-io/ge/pull/10 | M-01 | Added explicit require msg.sender == to | 
 | https://github.com/GoodEntry-io/ge/commit/bbbac57c110223f45851494971a34f57c55922c7 | M-02 | Prevent collect from reverting by adding a check that it doesnt try to collect 0 | 
 | https://github.com/GoodEntry-io/ge/pull/11 | M-03 | Reworked activeTickIndex as per desc above | 
-|  | M-04 | This | 
 | https://github.com/GoodEntry-io/ge/pull/8 | M-05, M-07 | Removed addDust mechanism, replaced by depositExactly in TR | 
 | https://github.com/GoodEntry-io/ge/pull/3 | M-06 | Added return value check | 
 
