@@ -28,8 +28,6 @@ Mitigations of all High and Medium issues will be considered in-scope and listed
 - [M-07: Incorrect calculations in deposit() function in TokenisableRange.sol can make the users suffer from immediate loss](https://github.com/code-423n4/2023-08-goodentry-findings/issues/202)
 - [M-08: Return value of low level call not checked.](https://github.com/code-423n4/2023-08-goodentry-findings/issues/83)
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
-
 ## Overview of changes
 
 Simple errors like the sqrt version were corrected.
